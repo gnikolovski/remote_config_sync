@@ -1,0 +1,32 @@
+remote_config_sync.sync:
+  path: '/admin/config/development/remote-config-sync/sync'
+  defaults:
+    _form: '\Drupal\remote_config_sync\Form\SyncForm'
+    _title: 'Sync'
+  requirements:
+    _permission: 'access remote config sync admin'
+
+remote_config_sync.local:
+  path: '/admin/config/development/remote-config-sync/local'
+  defaults:
+    _form: '\Drupal\remote_config_sync\Form\LocalForm'
+    _title: 'Local'
+  requirements:
+    _permission: 'access remote config sync admin'
+
+remote_config_sync.remote:
+  path: '/admin/config/development/remote-config-sync/remote'
+  defaults:
+    _form: '\Drupal\remote_config_sync\Form\RemoteForm'
+    _title: 'Remote'
+  requirements:
+    _permission: 'access remote config sync admin'
+
+remote_config_sync.api_v1_config:
+  path: '/api/v1/remote-config-sync'
+  methods: [POST]
+  defaults:
+    _controller: '\Drupal\remote_config_sync\Controller\SyncController::post'
+    _title: 'Post'
+  requirements:
+    _permission: 'access content'
