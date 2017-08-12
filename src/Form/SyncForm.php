@@ -59,6 +59,8 @@ class SyncForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $config = $this->configFactory->get('remote_config_sync.settings');
+
     $form['sync'] = [
       '#type' => 'fieldset',
     ];
@@ -90,10 +92,12 @@ class SyncForm extends FormBase {
       '#value' => $this->t('Synchronize'),
     ];
 
-    $form['sync']['confirm'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('I confirm this operation.'),
-    ];
+    if (!$config->get('disable_confirmation')) {
+      $form['sync']['confirm'] = [
+        '#type' => 'checkbox',
+        '#title' => $this->t('I confirm this operation.'),
+      ];
+    }
 
     return $form;
   }
@@ -102,13 +106,15 @@ class SyncForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
+    $config = $this->configFactory->get('remote_config_sync.settings');
+
     if (!$form_state->getValue('remotes')) {
       $form_state->setErrorByName('remotes',
         $this->t('Please select a remote site.')
       );
     }
 
-    if (!$form_state->getValue('confirm')) {
+    if (!$form_state->getValue('confirm') && !$config->get('disable_confirmation')) {
       $form_state->setErrorByName('confirm',
         $this->t('Before proceeding you must confirm this operation.')
       );

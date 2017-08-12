@@ -6,15 +6,15 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class LocalForm.
+ * Class TokenForm.
  */
-class LocalForm extends ConfigFormBase {
+class TokenForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'local_config_sync_form';
+    return 'remote_config_sync_token_form';
   }
 
   /**
@@ -38,16 +38,16 @@ class LocalForm extends ConfigFormBase {
         ->save();
     }
 
-    $form['local'] = [
+    $form['token'] = [
       '#type' => 'fieldset',
     ];
 
-    $form['local']['notice'] = [
+    $form['token']['notice'] = [
       '#type' => 'markup',
       '#markup' => $this->t('If you want to connect from a remote site and push the configuration from there, you will need this token.'),
     ];
 
-    $form['local']['token'] = [
+    $form['token']['token'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Token'),
       '#description' => $this->t('Security token for your local site.'),
@@ -57,7 +57,7 @@ class LocalForm extends ConfigFormBase {
       ],
     ];
 
-    $form['local']['submit'] = [
+    $form['token']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Generate new token'),
     ];

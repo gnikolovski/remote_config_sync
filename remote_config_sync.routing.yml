@@ -6,19 +6,19 @@ remote_config_sync.sync:
   requirements:
     _permission: 'access remote config sync admin'
 
-remote_config_sync.local:
-  path: '/admin/config/development/remote-config-sync/local'
+remote_config_sync.remotes:
+  path: '/admin/config/development/remote-config-sync/remotes'
   defaults:
-    _form: '\Drupal\remote_config_sync\Form\LocalForm'
-    _title: 'Local'
+    _form: '\Drupal\remote_config_sync\Form\RemotesForm'
+    _title: 'Remotes'
   requirements:
     _permission: 'access remote config sync admin'
 
-remote_config_sync.remote:
-  path: '/admin/config/development/remote-config-sync/remote'
+remote_config_sync.settings:
+  path: '/admin/config/development/remote-config-sync/settings'
   defaults:
-    _form: '\Drupal\remote_config_sync\Form\RemoteForm'
-    _title: 'Remote'
+    _controller: '\Drupal\remote_config_sync\Controller\PageController::settings'
+    _title: 'Settings'
   requirements:
     _permission: 'access remote config sync admin'
 

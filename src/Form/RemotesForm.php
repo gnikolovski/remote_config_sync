@@ -6,15 +6,15 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Class RemoteForm.
+ * Class RemotesForm.
  */
-class RemoteForm extends ConfigFormBase {
+class RemotesForm extends ConfigFormBase {
 
   /**
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'remote_config_sync_form';
+    return 'remote_config_sync_remotes_form';
   }
 
   /**
@@ -32,16 +32,16 @@ class RemoteForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('remote_config_sync.settings');
 
-    $form['remote'] = [
+    $form['remotes'] = [
       '#type' => 'fieldset',
     ];
 
-    $form['remote']['notice'] = [
+    $form['remotes']['notice'] = [
       '#type' => 'markup',
       '#markup' => $this->t('Enter your remote site details. In order to push the configuration, you need to enter the remote site URL and your security token for that site.'),
     ];
 
-    $form['remote']['remotes'] = [
+    $form['remotes']['remotes'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Remote sites'),
       '#required' => TRUE,
@@ -52,7 +52,7 @@ class RemoteForm extends ConfigFormBase {
       ],
     ];
 
-    $form['remote']['submit'] = [
+    $form['remotes']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Save'),
     ];

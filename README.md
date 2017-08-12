@@ -37,10 +37,10 @@ the module.
 2. Copy your DEVELOPMENT site to your PRODUCTION server. This will ensure that
 the sites UUIDs are the same.
 3. Install the Remote Config Sync module on both sites.
-4. On your DEVELOPMENT site go to the Remote page:
-'admin/config/development/remote-config-sync/remote' and enter the URL of your
-PRODUCTION site and copy the security token from your PRODUCTION Local page that 
-can be found here: 'admin/config/development/remote-config-sync/local'.
+4. On your DEVELOPMENT site go to the Remotes page:
+'admin/config/development/remote-config-sync/remotes' and enter the URL of your
+PRODUCTION site and copy the security token from your PRODUCTION Settings page
+that can be found here: 'admin/config/development/remote-config-sync/settings'.
 5. You can start pushing the configuration from DEVELOPMENT site to PRODUCTION.
 
 ### AUTHOR
