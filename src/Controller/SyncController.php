@@ -234,6 +234,7 @@ class SyncController extends ControllerBase {
     return new JsonResponse([
       'status' => 'status',
       'message' => $this->t('Configuration successfully pushed.'),
+      'host' => \Drupal::request()->getSchemeAndHttpHost(),
     ]);
   }
 
@@ -270,6 +271,7 @@ class SyncController extends ControllerBase {
       return new JsonResponse([
         'status' => 'status',
         'message' => $this->t('Configuration pushed and imported successfully.'),
+        'host' => \Drupal::request()->getSchemeAndHttpHost(),
       ]);
     }
     catch (ConfigImporterException $e) {

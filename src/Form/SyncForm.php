@@ -5,6 +5,8 @@ namespace Drupal\remote_config_sync\Form;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
+use Drupal\Core\Url;
 use Drupal\remote_config_sync\Service\Sync;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -130,12 +132,18 @@ class SyncForm extends FormBase {
 
     if ($operation == 'push') {
       $result = $this->sync->push($remote);
+      drupal_set_message($result['message'], $result['status']);
+
+      if (isset($result['host'])) {
+        $url = Url::fromUri($result['host'] . '/admin/config/development/configuration');
+        $link = Link::fromTextAndUrl(t('Visit your remote site'), $url);
+        drupal_set_message(t('@link to manually review and import it!', ['@link' => $link->toString()]));
+      }
     }
     else {
       $result = $this->sync->push($remote, TRUE);
+      drupal_set_message($result['message'], $result['status']);
     }
-
-    drupal_set_message($result['message'], $result['status']);
   }
 
   /**

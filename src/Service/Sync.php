@@ -124,6 +124,7 @@ class Sync {
       return [
         'status' => $response_contents['status'],
         'message' => $response_contents['message'],
+        'host' => $response_contents['host'],
       ];
     }
     catch (RequestException $e) {
