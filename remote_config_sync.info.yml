@@ -1,4 +1,4 @@
-name: Remote Config Sync
+name: 'Remote Config Sync'
 description: 'Synchronize configuration between local and remote site.'
 type: module
 core: 8.x

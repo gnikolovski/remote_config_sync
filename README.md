@@ -5,7 +5,7 @@
   * Introduction
   * Requirements
   * Installation
-  * Using the module
+  * Configuration
   * Author
 
 ## INTRODUCTION
@@ -31,7 +31,7 @@ None.
 3. Go to the Configuration -> Development -> Remote config sync and start using
 the module.
 
-## USING THE MODULE
+## CONFIGURATION
 
 1. Create your DEVELOPMENT site.
 2. Copy your DEVELOPMENT site to your PRODUCTION server. This will ensure that
@@ -47,7 +47,7 @@ that can be found here: 'admin/config/development/remote-config-sync/settings'.
 
 Goran Nikolovski  
 Website: http://gorannikolovski.com  
-Drupal: https://www.drupal.org/user/3451979  
+Drupal: https://www.drupal.org/u/gnikolovski  
 Email: nikolovski84@gmail.com  
 
 Company: Studio Present, Subotica, Serbia  
