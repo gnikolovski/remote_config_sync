@@ -197,7 +197,7 @@ class SyncController extends ControllerBase {
    */
   protected function extractConfigArchive($hash) {
     $file = file_get_contents('php://input');
-    $file_path = file_directory_temp() . '/remote_config_sync.tar.gz';
+    $file_path = \Drupal::service('file_system')->getTempDirectory() . '/remote_config_sync.tar.gz';
     file_unmanaged_delete($file_path);
     file_put_contents($file_path, $file);
 

@@ -68,8 +68,8 @@ class Sync {
    * @return bool
    */
   protected function exportConfig() {
-    file_unmanaged_delete(file_directory_temp() . '/remote_config_sync.tar.gz');
-    $archiver = new ArchiveTar(file_directory_temp() . '/remote_config_sync.tar.gz', 'gz');
+    file_unmanaged_delete(\Drupal::service('file_system')->getTempDirectory() . '/remote_config_sync.tar.gz');
+    $archiver = new ArchiveTar(\Drupal::service('file_system')->getTempDirectory() . '/remote_config_sync.tar.gz', 'gz');
 
     // Get raw configuration data without overrides.
     foreach ($this->configManager->getConfigFactory()->listAll() as $name) {
@@ -91,7 +91,7 @@ class Sync {
       }
     }
 
-    if (file_exists(file_directory_temp() . '/remote_config_sync.tar.gz')) {
+    if (file_exists(\Drupal::service('file_system')->getTempDirectory() . '/remote_config_sync.tar.gz')) {
       return TRUE;
     }
     return FALSE;
@@ -107,7 +107,7 @@ class Sync {
    * @return array
    */
   protected function uploadFile($remote_url, $remote_token, $import) {
-    $file_path = file_directory_temp() . '/remote_config_sync.tar.gz';
+    $file_path = \Drupal::service('file_system')->getTempDirectory() . '/remote_config_sync.tar.gz';
     $hash = hash_file('md5', $file_path);
 
     try {
@@ -118,7 +118,7 @@ class Sync {
           'hash' => $hash,
           'import' => $import,
         ],
-        'body' => file_get_contents(file_directory_temp() . '/remote_config_sync.tar.gz'),
+        'body' => file_get_contents(\Drupal::service('file_system')->getTempDirectory() . '/remote_config_sync.tar.gz'),
       ]);
       $response_contents = json_decode($response->getBody()->getContents(), TRUE);
       return [

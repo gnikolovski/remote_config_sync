@@ -132,17 +132,17 @@ class SyncForm extends FormBase {
 
     if ($operation == 'push') {
       $result = $this->sync->push($remote);
-      drupal_set_message($result['message'], $result['status']);
+      $this->messenger->addMessage($result['message'], $result['status']);
 
       if (isset($result['host'])) {
         $url = Url::fromUri($result['host'] . '/admin/config/development/configuration');
         $link = Link::fromTextAndUrl(t('Visit your remote site'), $url);
-        drupal_set_message(t('@link to manually review and import it!', ['@link' => $link->toString()]));
+        $this->messenger()->addStatus(t('@link to manually review and import it!', ['@link' => $link->toString()]));
       }
     }
     else {
       $result = $this->sync->push($remote, TRUE);
-      drupal_set_message($result['message'], $result['status']);
+      $this->messenger->addMessage($result['message'], $result['status']);
     }
   }
 
