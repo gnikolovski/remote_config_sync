@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class PageController extends ControllerBase {
 
   /**
-   * The FormBuilder object.
+   * The form builder object.
    *
    * @var \Drupal\Core\Form\FormBuilderInterface
    */
@@ -22,6 +22,7 @@ class PageController extends ControllerBase {
    * PageController constructor.
    *
    * @param \Drupal\Core\Form\FormBuilderInterface $form_builder
+   *   The form builder object.
    */
   public function __construct(FormBuilderInterface $form_builder) {
     $this->formBuilder = $form_builder;
@@ -40,6 +41,7 @@ class PageController extends ControllerBase {
    * Settings page.
    *
    * @return array
+   *   Token and Settings forms.
    */
   public function settings() {
     return [

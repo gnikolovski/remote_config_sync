@@ -48,7 +48,7 @@ class RemotesForm extends ConfigFormBase {
       '#description' => $this->t('Format: url | token. Enter one site per line.'),
       '#default_value' => $config->get('remotes'),
       '#attributes' => [
-        'placeholder' => t('http://myremotesite.com|17254323-55f8-4645-9066-0d439ad3f545'),
+        'placeholder' => $this->t('http://myremotesite.com|17254323-55f8-4645-9066-0d439ad3f545'),
       ],
     ];
 

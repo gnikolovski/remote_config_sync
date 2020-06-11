@@ -39,7 +39,7 @@ class SettingsForm extends ConfigFormBase {
     $form['settings']['disable_confirmation'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Disable confirmation'),
-      '#description' => $this->t('Don\'t require confirmation on the configuration sync.'),
+      '#description' => $this->t("Don't require confirmation on the configuration sync."),
       '#default_value' => $config->get('disable_confirmation'),
     ];
 
@@ -49,13 +49,6 @@ class SettingsForm extends ConfigFormBase {
     ];
 
     return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function validateForm(array &$form, FormStateInterface $form_state) {
-    parent::validateForm($form, $form_state);
   }
 
   /**

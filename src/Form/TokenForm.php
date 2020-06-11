@@ -53,7 +53,7 @@ class TokenForm extends ConfigFormBase {
       '#description' => $this->t('Security token for your local site.'),
       '#default_value' => $config->get('token'),
       '#attributes' => [
-        'readonly' => 'readonly'
+        'readonly' => 'readonly',
       ],
     ];
 
@@ -63,13 +63,6 @@ class TokenForm extends ConfigFormBase {
     ];
 
     return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function validateForm(array &$form, FormStateInterface $form_state) {
-    parent::validateForm($form, $form_state);
   }
 
   /**
@@ -88,6 +81,7 @@ class TokenForm extends ConfigFormBase {
    * Generate a new security token.
    *
    * @return string
+   *   The generated token.
    */
   protected function guidv4() {
     $data = openssl_random_pseudo_bytes(16);

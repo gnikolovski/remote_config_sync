@@ -33,7 +33,9 @@ class SyncForm extends FormBase {
    * SyncForm constructor.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory.
    * @param \Drupal\remote_config_sync\Service\Sync $sync
+   *   The sync service.
    */
   public function __construct(ConfigFactoryInterface $config_factory, Sync $sync) {
     $this->configFactory = $config_factory;
@@ -136,8 +138,8 @@ class SyncForm extends FormBase {
 
       if (isset($result['host'])) {
         $url = Url::fromUri($result['host'] . '/admin/config/development/configuration');
-        $link = Link::fromTextAndUrl(t('Visit your remote site'), $url);
-        $this->messenger()->addStatus(t('@link to manually review and import it!', ['@link' => $link->toString()]));
+        $link = Link::fromTextAndUrl($this->t('Visit your remote site'), $url);
+        $this->messenger()->addStatus($this->t('@link to manually review and import it!', ['@link' => $link->toString()]));
       }
     }
     else {
