@@ -5,3 +5,6 @@ remote_config_sync.settings:
     disable_confirmation:
       type: boolean
       label: 'Disable confirmation'
+    token:
+      type: string
+      label: 'Token'
