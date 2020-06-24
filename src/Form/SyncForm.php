@@ -6,6 +6,7 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
+use Drupal\Core\Messenger\MessengerInterface;
 use Drupal\Core\Url;
 use Drupal\remote_config_sync\Service\Sync;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -30,16 +31,26 @@ class SyncForm extends FormBase {
   protected $sync;
 
   /**
+   * The messenger.
+   *
+   * @var \Drupal\Core\Messenger\MessengerInterface
+   */
+  protected $messenger;
+
+  /**
    * SyncForm constructor.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory.
    * @param \Drupal\remote_config_sync\Service\Sync $sync
    *   The sync service.
+   * @param \Drupal\Core\Messenger\MessengerInterface $messenger
+   *   The messenger.
    */
-  public function __construct(ConfigFactoryInterface $config_factory, Sync $sync) {
+  public function __construct(ConfigFactoryInterface $config_factory, Sync $sync, MessengerInterface $messenger) {
     $this->configFactory = $config_factory;
     $this->sync = $sync;
+    $this->messenger = $messenger;
   }
 
   /**
@@ -48,7 +59,8 @@ class SyncForm extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('config.factory'),
-      $container->get('remote_config_sync.sync')
+      $container->get('remote_config_sync.sync'),
+      $container->get('messenger')
     );
   }
 
